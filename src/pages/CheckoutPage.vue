@@ -389,131 +389,134 @@ export default defineComponent({
       }
     },
   },
-  async onBack() {
-    if (this.step === 1) {
-      this.$router.push("/");
-    } else {
-      this.$refs.stepper.previous();
-    }
-  },
 
-  async onContinue() {
-    //when the step gets to 4 on click will return the user to the home page
-
-    if (this.step === 4) {
-      this.$router.push("/");
-    } else {
-      this.$refs.stepper.next();
-    }
-
-    if (this.step === 1) {
-      const { orderId, orderInfo } = this.store.order;
-      await updateOrder(orderId, orderInfo);
-      this.$refs.stepper.next();
-    } else {
-      this.$refs.stepper.next();
-    }
-  },
-  async submitForm(e) {
-    e.preventDefault();
-    try {
-      this.payment.loading = true;
-      this.payment.submissionError = null;
-      const response = await this.payment.stripe.createToken(
-        this.payment.card["cardNumber"]
-      );
-      const { error, token } = response;
-      console.log("error:", error, "token:", token, "response:", response);
-      if (error) {
-        this.payment.submissionError = error.message;
+  methods: {
+    onBack() {
+      if (this.step === 1) {
+        this.$router.push("/");
       } else {
-        this.resetForm();
-        this.onSuccessfulPayment();
+        this.$refs.stepper.previous();
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.payment.loading = false;
-    }
-  },
-  resetForm() {
-    for (const [elementType, item] of Object.entries(this.payment.card)) {
-      this.payment.card[elementType].clear();
-    }
-  },
-  updated(e) {
-    const elementType = e["elementType"];
-    const error = e["error"];
-    if (error) {
-      this.payment.errors[elementType] = e["error"]["message"];
-      return null;
-    } else {
-      if (this.payment.errors[elementType]) {
-        this.payment.errors[elementType] = "";
+    },
+
+    async onContinue() {
+      //when the step gets to 4 on click will return the user to the home page
+      console.log(this.step);
+      if (this.step === 4) {
+        this.$router.push("/");
+      } else {
+        this.$refs.stepper.next();
       }
-    }
-  },
-  isValid(elementType) {
-    return this.payment.errors[elementType] === "";
-  },
-  errorMessage(elementType) {
-    return this.isValid(elementType) ? this.errors[elementType] : false;
-  },
-  async onPreparePaymentPage() {
-    const style = {
-      base: {
-        fontFamily:
-          '"Roboto", "-apple-system", "Helvetica Neue", Helvetica, Arial, sans-serif',
-        "::placeholder": {
-          color: "#CFD7E0",
-        },
-      },
-    };
 
-    if (!this.payment.stripe) {
-      // TODO: move to env
-      this.payment.stripe = await loadStripe(
-        "pk_test_51MBUjIJYzhfY0eqFNnN315LEfHqXYe81t46WFozrnAympdShGm7mlUxsPHmBk8gN67Lbl0HPNXE82znRCJYF5q3G00uGTX1MTL"
-      ); //REPLACE THE KEY
-    }
-    if (!this.payment.elements) {
-      const cardElements = ["cardNumber", "cardExpiry", "cardCvc"];
-      this.payment.elements = this.payment.stripe.elements();
-      cardElements.forEach((element) => {
-        this.payment.card[element] = this.payment.elements.create(element, {
-          style: style,
-        });
-
-        this.payment.card[element].mount("#" + element);
-        this.payment.card[element].addEventListener("change", (e) =>
-          this.updated(e)
+      if (this.step === 1) {
+        const { orderId, orderInfo } = this.store.order;
+        await updateOrder(orderId, orderInfo);
+        this.$refs.stepper.next();
+      } else {
+        this.$refs.stepper.next();
+      }
+    },
+    async submitForm(e) {
+      e.preventDefault();
+      try {
+        this.payment.loading = true;
+        this.payment.submissionError = null;
+        const response = await this.payment.stripe.createToken(
+          this.payment.card["cardNumber"]
         );
-      });
-    }
-  },
+        const { error, token } = response;
+        console.log("error:", error, "token:", token, "response:", response);
+        if (error) {
+          this.payment.submissionError = error.message;
+        } else {
+          this.resetForm();
+          this.onSuccessfulPayment();
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.payment.loading = false;
+      }
+    },
+    resetForm() {
+      for (const [elementType, item] of Object.entries(this.payment.card)) {
+        this.payment.card[elementType].clear();
+      }
+    },
+    updated(e) {
+      const elementType = e["elementType"];
+      const error = e["error"];
+      if (error) {
+        this.payment.errors[elementType] = e["error"]["message"];
+        return null;
+      } else {
+        if (this.payment.errors[elementType]) {
+          this.payment.errors[elementType] = "";
+        }
+      }
+    },
+    isValid(elementType) {
+      return this.payment.errors[elementType] === "";
+    },
+    errorMessage(elementType) {
+      return this.isValid(elementType) ? this.errors[elementType] : false;
+    },
+    async onPreparePaymentPage() {
+      const style = {
+        base: {
+          fontFamily:
+            '"Roboto", "-apple-system", "Helvetica Neue", Helvetica, Arial, sans-serif',
+          "::placeholder": {
+            color: "#CFD7E0",
+          },
+        },
+      };
 
-  async onSuccessfulPayment() {
-    //give the user a success message
-    this.store.clearCart();
-    this.$q.notify({
-      message: "Payment Successful",
-      color: "green",
-      position: "top",
-    });
-    try {
-      const orderId = this.store.order.orderId;
-      this.payment.loading = true;
-      if (orderId) {
-        await updateOrder(orderId, {
-          status: "complete",
+      if (!this.payment.stripe) {
+        // TODO: move to env
+        this.payment.stripe = await loadStripe(
+          "pk_test_51MBUjIJYzhfY0eqFNnN315LEfHqXYe81t46WFozrnAympdShGm7mlUxsPHmBk8gN67Lbl0HPNXE82znRCJYF5q3G00uGTX1MTL"
+        ); //REPLACE THE KEY
+      }
+      if (!this.payment.elements) {
+        const cardElements = ["cardNumber", "cardExpiry", "cardCvc"];
+        this.payment.elements = this.payment.stripe.elements();
+        cardElements.forEach((element) => {
+          this.payment.card[element] = this.payment.elements.create(element, {
+            style: style,
+          });
+
+          this.payment.card[element].mount("#" + element);
+          this.payment.card[element].addEventListener("change", (e) =>
+            this.updated(e)
+          );
         });
       }
-      this.$refs.stepper.next();
-    } catch (e) {
-      this.payment.submissionError = e.message;
-    } finally {
-      this.payment.loading = false;
-    }
+    },
+
+    async onSuccessfulPayment() {
+      //give the user a success message
+      this.store.clearCart();
+      this.$q.notify({
+        message: "Payment Successful",
+        color: "green",
+        position: "top",
+      });
+      try {
+        const orderId = this.store.order.orderId;
+        this.payment.loading = true;
+        if (orderId) {
+          await updateOrder(orderId, {
+            status: "complete",
+          });
+        }
+        this.$refs.stepper.next();
+      } catch (e) {
+        this.payment.submissionError = e.message;
+      } finally {
+        this.payment.loading = false;
+      }
+    },
   },
 });
 </script>
