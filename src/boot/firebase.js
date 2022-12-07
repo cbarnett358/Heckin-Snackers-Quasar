@@ -73,7 +73,7 @@ async function createOrder() {
 
   store.updateOrder({
     orderId: uniqId,
-   
+    orderInfo: order
   });
 
   console.log(order, "done");
