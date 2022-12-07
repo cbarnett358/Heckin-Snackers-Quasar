@@ -58,6 +58,8 @@ async function createOrder() {
     name: store.user?.name ?? "",
     phone: store.user?.phone ?? "",
     address: store.user?.address ?? "",
+    email: store.user?.email ?? "",
+    zipcode: store.user?.zipcode ?? "",
     cartItems: store.cart,
     status: "pending",
   };
@@ -71,7 +73,7 @@ async function createOrder() {
 
   store.updateOrder({
     orderId: uniqId,
-    orderInfo: order,
+   
   });
 
   console.log(order, "done");

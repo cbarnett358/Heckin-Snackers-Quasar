@@ -238,7 +238,7 @@
               v-if="step < 3"
               flat
               color="primary"
-              @click="$refs.stepper.previous()"
+              @click="onBack"
               label="Back"
               class="q-ml-sm"
             />
@@ -339,6 +339,7 @@ export default defineComponent({
       set(value) {
         this.store.updateOrderByKey({
           key: "zipcode",
+
           value: value,
         });
       },
@@ -387,6 +388,13 @@ export default defineComponent({
         });
       }
     },
+  },
+  async onBack() {
+    if (this.step === 1) {
+      this.$router.push("/");
+    } else {
+      this.$refs.stepper.previous();
+    }
   },
 
   async onContinue() {

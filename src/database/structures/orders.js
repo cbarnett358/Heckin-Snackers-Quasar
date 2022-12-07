@@ -8,6 +8,8 @@ const orders = {
           name: String,
           phone: String,
           address: String,
+          email: String,
+          zipcode: String,
           cartItems: Array, // Array<cart>
           status: "pending" | "completed",
           step: 1 | 2 | 3 | 4,

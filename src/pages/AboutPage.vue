@@ -51,53 +51,12 @@
       </div>
       <!-- /.container -->
     </div>
-    <!-- < <div class="container q-mx-xl">
-      <h3 class="text-info">About Us</h3>
-      <div class="image-left">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/HumanRightsLogo.svg/230px-HumanRightsLogo.svg.png"
-          alt="Human Rights Logo"
-        />
-        <div>
-          <p>
-            The Human Rights Logo has its origin in the international “Logo for
-            Human Rights” initiative, which was started in 2010. Its goal was to
-            create an internationally recognized logo to support the global
-            human rights movement. The winning logo was created by Predrag
-            Stakić from Serbia.
-          </p>
-          <footer>(from Wikipedia)</footer>
-        </div>
-      </div>
-
-      <div class="image-right">
-        <img
-          src="../../public/images/sammysit.png"
-          alt="Human Rights Logo"
-          width="300"
-        />
-        <div>
-          <p>
-            The Human Rights Logo has its origin in the international “Logo for
-            Human Rights” initiative, which was started in 2010. Its goal was to
-            create an internationally recognized logo to support the global
-            human rights movement. The winning logo was created by Predrag
-            Stakić from Serbia. The Human Rights Logo has its origin in the
-            international “Logo for Human Rights” initiative, which was started
-            in 2010. Its goal was to create an internationally recognized logo
-            to support the global human rights movement. The winning logo was
-            created by Predrag Stakić from Serbia.
-          </p>
-          <footer>(from Wikipedia)</footer>
-        </div>
-      </div>
-    </div> -->
 
     <div class="row">
       <div class="col-1"></div>
       <div class="col-8 q-mx-lg">
         <div>
-          <h3 class="text-info">About Us</h3>
+          <h3 class="text-info q-mb-none">About Us</h3>
 
           <div class="image-right">
             <img
@@ -106,26 +65,26 @@
               alt="Human Rights Logo"
             />
             <div>
-              <p>
-                Integer velit erat, egestas sit amet nunc eu, posuere placerat
-                lectus. Fusce eu velit pharetra, rutrum mauris vitae, commodo
-                magna. Aenean a fringilla quam. Praesent vel justo eu tellus
-                dignissim sodales id quis sem. Etiam tempor urna condimentum
-                orci gravida blandit. Suspendisse vestibulum ultrices massa sit
-                amet dignissim. Nam tincidunt tincidunt elit at tincidunt.
-                Integer tempus rhoncus lacus cursus tincidunt. Duis vitae mi
-                nunc. Pellentesque congue dui volutpat bibendum finibus. Proin
-                interdum tristique risus. Aenean porttitor vehicula varius.
-                Aliquam dignissim aliquet varius. Maecenas vitae nibh quam.
-                Phasellus tempor nisi leo, sit amet pulvinar ligula varius eget.
-                Morbi pharetra augue sed magna malesuada posuere. Fusce interdum
-                pellentesque porta. Aenean commodo lacinia risus, eget viverra
-                mauris viverra sit amet. Donec feugiat lorem dictum erat
-                fermentum maximus. Aenean ex tellus, luctus ut varius eget,
-                ultricies eu felis. Class aptent taciti sociosqu ad litora
-                torquent per conubia nostra, per inceptos himenaeos.
+              <p class="q-mt-none">
+                Heckin' Snackers prides itself in supplying your pups both big
+                and small with the most wholesome, delicious dog food on the
+                market. We source all of our ingredients here in the US and use
+                only natural ingredients, none of that heckin' artificial stuff.
+                <br /><br />
+                Each of our products is vet formulated to ensure your pup is
+                getting the best nutrition possible. For all of your dogs' needs
+                we have you covered whether it's dried kibble, wet food, or
+                snackers to keep their tail wagging! We don't just stop at
+                feeding your pup we know an active lifestyle is just as
+                important that's why we also sell our very own dog toys and
+                accessories to keep your pup heckin' occupied all day long.
+                <br /><br />
+                We don't just stop at feeding your pup we know an active
+                lifestyle is just as important that's why we also sell our very
+                own dog toys and accessories to keep your pup heckin' occupied
+                all day long. We garuantee your pup will love our offerings or
+                your money back!
               </p>
-              <footer>(from Wikipedia)</footer>
             </div>
           </div>
         </div>

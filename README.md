@@ -31,5 +31,12 @@ yarn quasar build
 
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
 
+### Quasar
 
+- Scaffolding a new app: https://quasar.dev/start/quasar-cli
+- https://blog.logrocket.com/applications-with-quasar/
+- Layout builder: https://quasar.dev/layout-builder
 
+###
+
+# heckin-snackers-quasar-cli

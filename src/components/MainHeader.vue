@@ -10,7 +10,22 @@
       ></q-toolbar-title>
 
       <SearchBar></SearchBar>
-    
+      <!--Search Bar
+
+      <q-input
+        color="primary"
+        dense
+        hide-bottom-space
+        v-model="search"
+        label="Search"
+        class="q-mr-md"
+        filled
+      >
+        <template v-slot:append>
+          <q-icon name="search" color="primary" />
+        </template>
+      </q-input>-->
+      <!--Cart Button-->
       <div class="q-mr-lg">
         <q-btn
           round
