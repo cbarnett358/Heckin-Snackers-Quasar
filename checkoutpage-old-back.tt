@@ -1,0 +1,100 @@
+    <q-card>
+      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md bg-white">
+        <q-input
+          filled
+          v-model="name"
+          label="Your name *"
+          hint="Name and surname"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+        />
+
+        <q-input
+          filled
+          v-model="email"
+          label="Your email *"
+          lazy-rules
+          :rules="[
+            (val) => (val !== null && val !== '') || 'Please type your age',
+            (val) => val.includes('@') || 'Please type a correct email address',
+          ]"
+        />
+        <q-input
+          filled
+          v-model="phone"
+          label="Phone # *"
+          hint="222-222-2222"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+        />
+        <q-input
+          filled
+          v-model="address"
+          label="Your address *"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+        />
+        <q-input
+          filled
+          v-model="zipcode"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+        />
+
+        <q-toggle v-model="accept" label="I accept the license and terms" />
+
+        <div>
+          <q-btn
+            label="Continue to Payment"
+            type="submit"
+            color="primary"
+            @click="onContinuePayment"
+          />
+        </div>
+
+        <div class="row col-6">
+          <!--cart summary -->
+          <q-list bordered separator>
+            <q-item v-if="!store.cart.length" class="text-subtitle1">
+              <q-item-section>Your cart is empty.</q-item-section>
+            </q-item>
+
+            <q-item v-for="(item, i) in store.cart" :key="i">
+              <q-item-section avatar>
+                <q-avatar rounded>
+                  <img :src="'./images/products/' + item.id + '.jpg'" />
+                </q-avatar>
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label>{{ item.name }} </q-item-label>
+                <q-item-label caption>{{ item.description }}</q-item-label>
+                <q-item-label>{{ item.cost }}</q-item-label>
+              </q-item-section>
+
+              <q-item-section side top>
+                <q-item-label caption>x{{ item.qty }}</q-item-label>
+              </q-item-section>
+
+              <q-item-section side top>
+                <q-btn
+                  flat
+                  icon="add_circle"
+                  @click.prevent="store.addToCart(item)"
+                  class="btn text-green"
+                ></q-btn>
+                <q-btn
+                  flat
+                  icon="remove_circle"
+                  @click.prevent="store.removeFromCart(item)"
+                  class="btn text-red"
+                ></q-btn>
+              </q-item-section>
+            </q-item>
+
+            <q-separator />
+
+            <q-item class="text-h6 q-pa-md text-right"> </q-item>
+          </q-list>
+        </div> </q-form
+    ></q-card>

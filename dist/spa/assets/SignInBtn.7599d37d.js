@@ -1,0 +1,1 @@
+import{a7 as a,a8 as n,a9 as t,aa as e,ak as r}from"./index.7d032ad3.js";const o=a({name:"SignInBtn"});function s(c,p,i,_,f,m){return t(),e(r,{to:"/auth",flat:"",label:"Sign In",class:"btn btn-primary text-primary"})}var B=n(o,[["render",s]]);export{B as S};
