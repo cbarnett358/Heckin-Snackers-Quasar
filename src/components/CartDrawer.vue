@@ -62,12 +62,12 @@
 
       <q-item class="q-pa-lg">
         <q-item-section>
-          <!-- to="/checkout" -->
           <q-btn
             flat
             icon="shopping_cart"
             label="CHECKOUT"
             class="btn btn-primary bg-primary text-white"
+            :loading="isCreatingOrder"
             @click="processCheckout"
           ></q-btn>
         </q-item-section>
@@ -78,13 +78,14 @@
 
 <script>
 import { useShopStore } from "stores/shopStore";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { createOrder } from "../boot/firebase";
 
 export default defineComponent({
   name: "CartDrawer",
 
   setup() {
+    const isCreatingOrder = ref(false);
     const store = useShopStore();
 
     return {
@@ -93,8 +94,10 @@ export default defineComponent({
   },
 
   methods: {
-    processCheckout() {
-      createOrder();
+    async processCheckout() {
+      this.isCreatingOrder = true;
+      await createOrder();
+      this.isCreatingOrder = false;
       this.$router.push("/checkout");
     },
   },
