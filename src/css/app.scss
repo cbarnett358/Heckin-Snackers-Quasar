@@ -1,7 +1,5 @@
 // app global css in SCSS form
-:root {
-  --smaller: 0.75;
-}
+
 
 .q-toolbar,
 .q-btn,
@@ -15,6 +13,38 @@ h6 {
   font-family: program, sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+//mobile styles
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2.5em;
+  }
+}
+
+.product-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 3.5rem;
+
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 4.5em;
+    line-height: 3.5rem;
+
+    //letter-spacing when on a new line
+
+  }
+}
+
+h2 {
+  font-size: 3rem;
+  line-height: 3rem;
+
 }
 
 .q-tab__label {
@@ -54,36 +84,20 @@ p {
   background-color: transparent;
 }
 .q-footer {
-  height: 120px;
-}
-.q-footer {
-  .q-toolbar {
-    min-height: 80px;
-  }
+  height: auto;
+ 
 
-  .q-toolbar__title {
-    font-size: 14px;
-    text-align: center;
-  }
 }
 
-.q-timeline__heading-title {
-  font-size: 3em;
-}
 
-.q-timeline__dot .q-icon {
-  top: 1px;
-  font-size: 40px;
-}
+
+
 
 .q-toolbar .q-icon {
   font-size: 40px;
 }
 
-.countdown-timer {
-  ul {
-    padding-left: 0;
-  }
+
 
   li {
     display: inline-block;
@@ -113,28 +127,25 @@ p {
       padding: 8px;
     }
   }
-}
 
 .drawer-open .q-icon {
   transform: rotate(45deg);
 }
 
-.my-card {
-  width: 100%;
-  max-width: 250px;
-}
 
 .q-page-container {
   background-image: url("../images/heckin-bg.png");
   background-repeat: repeat;
   background-size: contain;
+  background-position: center;
+  
 }
 
 .jumbotron {
   position: relative;
   overflow: hidden;
-  background-color: #8c6e64;
-  height: 500px;
+  background-color: $info;
+  height: 450px;
 }
 
 .jumbotron video {
@@ -152,125 +163,9 @@ p {
   z-index: 2;
   position: relative;
 }
-html.no-flexbox,
-html.no-js {
-  .image-and-text-module-v2 {
-    @media (max-width: 320px) {
-      .positioning {
-        width: 82.5%;
-        margin: 0 auto;
-      }
-    }
-    @media (max-width: 768px) {
-      /*tablet and below*/
-      .image {
-        background: none !important;
-        height: auto !important;
-        min-height: auto !important;
-      }
-      .text {
-        .positioning {
-          width: 76.04%;
-          margin: 0 auto;
-          padding: 94px 0;
-        }
-      }
-    }
-    @media (min-width: 769px) {
-      /*desktop*/
-      display: block;
-      &:before,
-      &:after {
-        content: "";
-        display: block;
-      }
-      &:after {
-        clear: both;
-      }
-      .image,
-      .text {
-        display: inline-block;
-        width: 50%;
-        float: left;
-      }
-      .image {
-        width: calc(50% - 5px);
-        img {
-          display: none;
-        }
-      }
-      .text {
-        width: calc(50% + 5px);
-        position: relative;
-        height: 100%;
-        .positioning {
-          width: 58.3%;
-          margin: 0 auto;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-    }
-  }
-}
 
-html.flexbox {
-  .image-and-text-module-v2 {
-    @media (max-width: 320px) {
-      .positioning {
-        width: 82.5%;
-        margin: 0 auto;
-      }
-    }
-    //change font size of h1 with class of display-4 on mobile
 
-    @media (max-width: 768px) {
-      /*tablet and below*/
-      &.image-right.mobile-image-top {
-        display: flex;
-        flex-flow: column-reverse;
-      }
-      &.image-left.mobile-image-bottom {
-        display: flex;
-        flex-flow: column-reverse;
-      }
-      .image {
-        background: none !important;
-        height: auto !important;
-        min-height: auto !important;
-      }
-      .text .positioning {
-        width: 76.04%;
-        padding: 94px 0;
-        margin: 0 auto;
-      }
-    }
-    @media (min-width: 769px) {
-      /*desktop*/
-      display: flex;
-      flex-flow: row wrap;
-      align-items: stretch;
-      .image {
-        background-size: cover;
-        flex: 6;
-        flex-basis: calc(50% - 5px);
-        img {
-          display: none;
-        }
-      }
+   
 
-      .text {
-        flex: 6;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-basis: calc(50% + 5px);
-        .positioning {
-          width: 51.44%;
-        }
-      }
-    }
-  }
-}
+      
+    

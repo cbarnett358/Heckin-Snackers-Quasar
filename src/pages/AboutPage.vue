@@ -51,7 +51,7 @@
       </div>
       <!-- /.container -->
     </div>
-
+    <div class="product-container q-ma-lg">
     <div class="row">
       <div class="col-1"></div>
       <div class="col-8 q-mx-lg">
@@ -92,13 +92,8 @@
       <div class="col"></div>
     </div>
 
-    <div class="row wrap justify-center q-px-md q-gutter-lg q-pb-lg">
-      <ProductsList></ProductsList>
-    </div>
-    <div class="row q-pb-xl">
-      <div class="col-1"></div>
-      <div class="col-6"></div>
-    </div>
+</div>
+  
   </q-page>
 </template>
 <style scoped>

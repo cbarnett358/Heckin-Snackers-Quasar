@@ -258,6 +258,7 @@ export const useShopStore = defineStore("counter", {
 
     //Cart actions (add, remove, clear, and cart total)
     addToCart(item) {
+      //save cart items in local storage
       let cartItem = this.cart.find((x) => x.id === item.id);
       this.isCartDrawerOpen = true;
 
@@ -266,10 +267,13 @@ export const useShopStore = defineStore("counter", {
       } else {
         this.cart.push({ ...item, qty: 1 });
       }
-
       this.cartQuantity++;
       this.cartTotal += dollarsToCents(item.cost);
+
     },
+
+
+  
 
     //Remove item from cart
     removeFromCart(item) {

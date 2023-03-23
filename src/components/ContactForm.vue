@@ -1,71 +1,96 @@
 <template>
-  <q-form @submit="onSubmit" @reset="onReset" class="q-mt-lg">
-    <q-input
-      outlined
-      v-model="name"
-      label="Name"
-      hint="Name"
-      class="bg-white q-mb-l"
-    />
+    <q-form ref="form" @submit.prevent="sendEmail" class="q-gutter-md">
+          <q-input
+            color="primary"
+            filled
+            type="text"
+            name="user_name"
+            v-model="user_name"
+            label="Name"
+            hint="What's your name?"
+            lazy-rules
+            :rules="[(val) => val.length > 0 || 'Please type something']"
+          />
 
-    <q-input
-      outlined
-      v-model="email"
-      label="Email"
-      hint="Email"
-      class="bg-white q-mb-lg q-mt-lg"
-    />
+          <q-input
+            color="primary"
+            filled
+            v-model="email"
+            name="user_email"
+            label="Email"
+            hint="What's your email?"
+            lazy-rules
+            :rules="[(val) => val.length > 0 || 'Please type something']"
+          />
 
-    <q-input
-      outlined
-      v-model="message"
-      label="Message"
-      hint="Message"
-      class="bg-white q-mb-lg"
-    />
+          <q-input
+            color="primary"
+            filled
+            label="Message"
+            name="message"
+            v-model="message"
+            hint="What's your message?"
+            lazy-rules
+            :rules="[(val) => val.length > 0 || 'Please type something']"
+          />
 
-    <q-btn
-      type="reset"
-      color="white"
-      flat
-      label="Reset"
-      class="q-mr-md bg-info"
-    />
-
-    <q-btn type="submit" color="primary" label="Submit" />
-  </q-form>
+          <div class="row justify-end">
+            <q-btn
+              icon="send"
+              label="Send Message"
+              type="submit"
+              color="primary"
+            />
+          </div>
+        </q-form>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import emailjs from "@emailjs/browser";
 
 export default defineComponent({
   name: "ContactForm",
-  //how to make a contact form component in vue js 3 and quasar framework with success and error messages and validation using q-form and q-input and send the data of the form to cbarnett2813@gmail.com
 
   data() {
     return {
-      name: "",
+      user_name: "",
       email: "",
       message: "",
     };
   },
-  //send the form to cbarnett2813@gmail.com email
   methods: {
-    onSubmit() {
-      this.$q.notify({
-        message: "Thank you for your message",
-        color: "primary",
-        position: "top",
-      });
-    },
-
-    onReset() {
-      this.$q.notify({
-        message: "Form has been reset",
-        color: "negative",
-        position: "top",
-      });
+    sendEmail() {
+      emailjs
+        .sendForm(
+          "service_qh9trkf",
+          "template_zzf5i2s",
+          this.$refs.form.$el,
+          "3SnUs-7tdrOK9w-Ac"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            //send success message
+            this.$q.notify({
+              message: "Email sent successfully",
+              color: "positive",
+              position: "top",
+              timeout: 3000,
+            });
+          },
+          (error) => {
+            console.log(error.text);
+            this.$q.notify({
+              message: "Email not sent",
+              color: "negative",
+              position: "top",
+              timeout: 2000,
+            });
+            this.$refs.form.resetValidation();
+          }
+        );
+      //send
     },
   },
 });

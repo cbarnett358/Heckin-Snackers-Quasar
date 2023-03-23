@@ -1,16 +1,15 @@
 <template>
 
-
-
-//display product cards in a grid layout that fills container and dont duplicate the same product
-
-
-
 <div class="row q-col-gutter-lg
 ">
       <div class="
-      col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3
-      "  v-for="item in store.products" :key="item.id" v-bind="item.id" transition="scale">
+      col-12
+        col-sm-6
+        col-md-4
+     
+        "  v-for="item in store.products.slice(0,3)" :key="item.id" v-bind="item.id" transition="scale"
+
+      >
         <div class="my-content"
      
         
@@ -46,25 +45,38 @@
     </div>
 
 
-
-
-
 </template>
 
 <script>
-import { defineComponent } from "vue";
+
+import { defineComponent } from 'vue';
 import { useShopStore } from "stores/shopStore";
+
+
 export default defineComponent({
-  name: "ProductsList",
-  setup() {
-    const store = useShopStore();
-    return {
-      store,
-      
-    };
 
+name: "FeaturedItems",
+
+setup() {
+
+const store = useShopStore();
+
+return {
+
+store,
+
+
+
+
+
+
+}
+
+}
     
+    })
 
-  },
-});
+
+
 </script>
+

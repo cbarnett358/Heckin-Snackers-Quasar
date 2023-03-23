@@ -4,7 +4,6 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { useShopStore } from "stores/shopStore";
 import uniqid from "uniqid";
-import { compileScript } from "vue/compiler-sfc";
 
 // import * as firebase from "firebase/app";
 // import { initializeApp } from "firebase/app";
@@ -28,12 +27,13 @@ const firebaseConfig = {
 // Initialize Firebase
 // if firebase isn't already initialize, initialize using the above credentials
 if (!firebase.apps.length) {
-  console.log("init firebase");
   firebase.initializeApp(firebaseConfig);
 }
 
 const store = useShopStore();
 
+
+//reviews 
 firebase.getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -43,6 +43,8 @@ firebase.getCurrentUser = () => {
     }, reject);
   });
 };
+
+
 
 // TODO - Remove here later
 firebase.getCurrentUser();

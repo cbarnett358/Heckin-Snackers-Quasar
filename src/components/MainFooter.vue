@@ -1,12 +1,14 @@
 <template>
-  <q-footer elevated class="bg-info">
-    <q-toolbar>
-      <q-toolbar-title>
-        <a href="/#">
-          <img src="../../public/images/heckinwhite.png" height="60"
-        /></a>
-      </q-toolbar-title>
-    </q-toolbar>
+  <q-footer elevated class="bg-info text-center">
+<div
+class="q-py-md"
+>
+
+    <q-img src="/images/heckinwhite.png"
+   width="150px" 
+    />
+
+  </div>
   </q-footer>
 </template>
 

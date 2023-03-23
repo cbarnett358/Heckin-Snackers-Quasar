@@ -67,6 +67,7 @@
 <script>
 import { defineComponent } from "vue";
 import { useShopStore } from "stores/shopStore";
+
 import AuthComponent from "components/AuthComponent.vue";
 import LogoutBtn from "components/LogoutBtn.vue";
 

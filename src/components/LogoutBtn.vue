@@ -22,34 +22,49 @@ export default defineComponent({
       store,
     };
   },
+
+
+
+
   methods: {
+      
+
     logout() {
+
+
       firebase.auth().signOut();
       this.$router
         .push("/")
         .then(() => {
-          this.$q.notify({
+
+            this.$q.notify({
             message: "Sign Out Success.",
             color: "green",
             position: "top",
           });
+
           //refresh the page after 3 seconds
           setTimeout(() => {
             location.reload();
           }, 1000);
-        })
+
+
+        })     
         .catch((error) =>
           this.$q.notify({
             message: "Sign Out Failed.",
             color: "red",
             position: "top",
+
+
           })
         );
 
-      console.log(error);
     },
+    
   },
   data() {
+      
     return {
       user: "",
       email: "",

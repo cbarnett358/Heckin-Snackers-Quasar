@@ -158,8 +158,7 @@ export default {
               color: "negative",
             }),
 
-          console.log(error)
-        );
+          );
     },
     forgotPassword() {
       this.resetPwdDialog = true;

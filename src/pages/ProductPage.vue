@@ -8,7 +8,7 @@
           <q-breadcrumbs class="text-info q-mt-md">
             <template v-slot:separator>
               <q-icon
-                size="1.5em"
+                size="1em"
                 name="chevron_right"
                 color="primary"
               ></q-icon>
@@ -29,24 +29,69 @@
               >&nbsp;&nbsp;{{ item.name }}</q-breadcrumbs-el
             >
           </q-breadcrumbs>
-          <q-item-section> {{ email }}</q-item-section>
-          <SignInBtn></SignInBtn>
-          <LogoutBtn></LogoutBtn>
+        
+         
+          <q-item-section>{{ email }} </q-item-section>
+
+<SignInBtn></SignInBtn>
+<LogoutBtn></LogoutBtn>
+          
         </q-item>
       </div>
     </div>
+    
     <!--breadcrumbs End-->
+    <div class="container q-ma-xl">
 
-    <!--Product Img Start-->
+      
+
+        <q-card class="product-container">
+       
+    <div class="row">
+      <div class="col-12 col-md-6 "> 
+
+        <q-img
+      
+     
+            :src="'./images/products/' + item.id + '.jpg'"
+            style="max-width: align-self: start;" 
+          ></q-img>
+        </div>
+
+      <div class="col-12 col-md-6 q-pa-lg ">
+        <h3 class="q-mb-none q-mt-sm text-primary">{{ item.name }}</h3>
+            <p class="q-my-sm">{{ item.description }}</p>
+            <q-btn
+              flat
+              @click="store.addToCart(item)"
+              class="q-mt-none btn btn-primary bg-primary text-white"
+              >Add to Cart</q-btn>
+              <RateProduct></RateProduct>
+
+              </div>
+    </div>
+    <div class="container">
+      <p  v-for="review in reviews" :key="review.id">{{ review.name }}</p>
+
+    </div>
+  </q-card>
+
+      </div>
+
+    
+  
+
+    <!--Product Img Start
+
     <div class="full-width row wrap justify-center q-pa-lg q-gutter-md">
       <q-card>
         <img :src="'./images/products/' + item.id + '.jpg'" />
 
         <q-linear-progress :value="0.6" color="primary"></q-linear-progress>
-        <!--Product Img End-->
+        Product Img End
 
         <q-card>
-          <!--Product Desc Start-->
+          Product Desc Start
           <q-card-section>
             <h3 class="q-mb-none q-mt-sm text-primary">{{ item.name }}</h3>
             <p class="q-my-sm">{{ item.description }}</p>
@@ -57,16 +102,15 @@
               >Add to Cart</q-btn
             >
           </q-card-section>
-          <!--Product Desc End-->
+         Product Desc End
 
-          <!--Product Rating Start-->
+       
           <q-card-section class="q-pt-none">
             <RateProduct></RateProduct>
           </q-card-section>
-          <!--Product Rating End-->
         </q-card>
       </q-card>
-    </div>
+    </div>-->
   </q-page>
 </template>
 
@@ -114,10 +158,10 @@ export default defineComponent({
   },
 
   components: {
+    RateProduct,
     LogoutBtn,
     SignInBtn,
-    RateProduct,
-  },
+},
 });
 </script>
 

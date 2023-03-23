@@ -33,9 +33,15 @@
       </div>
     </div>
     <!--breadcrumbs End-->
-    <div class="container q-mx-xl q-mb-xl">
-      <h3 class="text-info q-mb-none">CONTACT US</h3>
+    <div class="container q-ma-xl">
+
+      
+
+<q-card class="product-container q-pa-lg">
+     
+  <h3 class="text-info ">CONTACT US</h3>
       <ContactForm></ContactForm>
+      </q-card>
     </div>
   </q-page>
 </template>

@@ -28,7 +28,6 @@ import { useShopStore } from "stores/shopStore";
 import CartDrawer from "src/components/CartDrawer.vue";
 import MainHeader from "../components/MainHeader.vue";
 import MainFooter from "src/components/MainFooter.vue";
-import firebase from "firebase/compat/app";
 
 export default defineComponent({
   name: "MainLayout",

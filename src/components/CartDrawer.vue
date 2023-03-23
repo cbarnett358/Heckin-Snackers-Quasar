@@ -98,9 +98,24 @@ export default defineComponent({
     async processCheckout() {
       this.isCreatingOrder = true;
       await createOrder();
-      this.isCreatingOrder = false;
+      this.isCreatingOrder = false;      
+
+
+
       this.$router.push("/checkout");
+       
+
+
+
+        
+
+
+
+
+
+        
     },
   },
 });
+
 </script>

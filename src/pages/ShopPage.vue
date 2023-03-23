@@ -39,7 +39,9 @@
         <source src="../assets/AdobeStock_391618271.mp4" type="video/mp4" />
       </video>
 
-      <div class="container text-white q-px-lg">
+      <div class="container text-white q-px-lg
+      q-py-lg
+      ">
         <div class="col-1"></div>
         <div class="col-6"></div>
         <h1 class="display-4 q-mb-none text-center">Shop Our Snackers</h1>
@@ -52,11 +54,11 @@
       </div>
       <!-- /.container -->
     </div>
+    <div class="product-container q-ma-lg">
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-6">
+     
         <div>
-          <h3 class="text-info q-mb-none q-ml-sm">
+          <h3 class="text-info q-mb-none ">
             SHOP OUR PRODUCTS
             <q-btn-dropdown class="flat" color="primary" label="Sort">
               <q-list>
@@ -67,31 +69,13 @@
                 <q-item clickable @click="store.sortItemsByPriceAsc">
                   <q-item-section>Price: Low-High</q-item-section>
                 </q-item>
-                <q-item clickable @click="store.sortItemsByPriceAsc">
-                  <q-item-section>Sort By Catergory</q-item-section>
-                </q-item>
-
-                <q-item clickable @click="store.sortProducts">
-                  <q-item-section>Top Sellers</q-item-section>
-                </q-item>
-                <q-item clickable v-close-popup @click="store.showSnackers">
-                  <q-item-section>Show Snackers</q-item-section>
-                </q-item>
-                <q-item clickable v-close-popup @click="store.showToys">
-                  <q-item-section>Show Toys</q-item-section>
-                </q-item>
-                <q-item clickable v-close-popup @click="store.showAccessories">
-                  <q-item-section>Show Accessories</q-item-section>
-                </q-item>
-                <q-item clickable v-close-popup @click="store.resetProducts">
-                  <q-item-section>Reset Filter</q-item-section>
-                </q-item>
+              
               </q-list>
             </q-btn-dropdown>
           </h3>
-        </div>
+     
 
-        <div class="text-info q-pb-md q-mx-sm" id="productAmount">
+        <div class="text-info q-pb-md " id="productAmount">
           heckin' {{ store.products.length }} products available.
         </div>
       </div>
@@ -104,7 +88,7 @@
     <div class="row q-pb-xl">
       <div class="col-1"></div>
       <div class="col-6"></div>
-    </div>
+    </div></div>
   </q-page>
 </template>
 
@@ -132,6 +116,7 @@ export default defineComponent({
       email: "",
     };
   },
+
   created() {
     firebase.auth().onAuthStateChanged((auth) => {
       if (auth) {

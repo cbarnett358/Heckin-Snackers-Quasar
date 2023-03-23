@@ -34,10 +34,12 @@
         <source src="../assets/AdobeStock_436785558.mp4" type="video/mp4" />
       </video>
 
-      <div class="container text-white q-px-lg">
-        <div class="col-1"></div>
-        <div class="col-6"></div>
-        <h1 class="display-4 q-mb-none text-center">Heckin' Snackers</h1>
+      <div class="container fluid text-white q-px-lg
+      q-py-lg
+      
+      ">
+        <div class="product-container">
+        <h1 class="display-4 q-mb-none text-center">The Tastiest Treats That Your Pup Will Love</h1>
         <p id="jumbotronp" class="lead text-center">
           Heckin' Snackers provides fresh, and most importantly heckin'
           delicious snacks and food your dog will love garuanteed! Everything is
@@ -48,119 +50,41 @@
           <q-btn to="/shop" flat class="btn btn-primary bg-primary text-white"
             >Shop Snackers</q-btn
           >
+          <q-btn to="/info" flat class="btn btn-secondary bg-info text-white"
+            >Our Purpose</q-btn
+          ></div>
         </div>
       </div>
       <!-- /.container -->
     </div>
     <!--Jumbotron video End-->
+<div class="product-container q-ma-lg">
+  <h2 class="text-primary ">Featured Items</h2>
+  <FeaturedItems></FeaturedItems>
+
+  <q-btn to="/shop" flat class="q-mt-lg q-mb-xl btn btn-primary bg-info text-white"
+    >Shop All Products</q-btn>
+
+</div>
+  <NewsLetter></NewsLetter>
+
+
 
     <!--Content Start-->
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-6">
-        <h3 class="text-info q-mb-md">TOP SELLERS</h3>
-      </div>
-      <div class="col"></div>
-    </div>
-
-    <!--Product List Start-->
-    <div class="row wrap justify-center q-px-md q-gutter-lg q-pb-lg">
-      <ProductsList></ProductsList>
-    </div>
-    <div class="row q-pb-xl">
-      <div class="col-1"></div>
-      <div class="col-6">
-        <q-btn flat class="btn btn-primary bg-primary text-white" to="/shop"
-          >Shop All</q-btn
-        >
-
-        <p></p>
-      </div>
-    </div>
-    <!--Product List End-->
-
-    <!--Newsletter Start-->
-    <div class="q-pb-xl">
-      <div class="row bg-primary">
-        <div class="q-mx-xl q-pl-xl text-info col-8">
-          <div>
-            <h3 class="text-white q-mb-sm">Sign Up To Our Newsletter</h3>
-            <p class="text-white">Keep up to date with all the latest news!</p>
-            <footer><NewsLetter></NewsLetter></footer>
-          </div>
-        </div>
-        <img src="../../public/images/sammysit.png" width="200" />
-      </div>
-      <div class="ma-lg col-4"></div>
-    </div>
-    <!--Newsletter Start-->
+    
+  
   </q-page>
 </template>
-<style scoped>
-html {
-  padding: 0 1em;
-  font-family: Calibri, sans-serif;
-}
 
-body {
-  margin: auto;
-  max-width: 42em;
-}
-
-img {
-  max-width: 100%;
-}
-
-.image-left,
-.image-right {
-  margin: 1em 0;
-}
-
-@media (min-width: 20em) {
-  .image-left,
-  .image-right {
-    display: flex;
-    align-items: center;
-  }
-
-  .image-left img {
-    margin-right: 1em;
-    float: left; /* fallback */
-  }
-
-  .image-right img {
-    order: 1;
-    margin-left: 1em;
-    float: right; /* fallback */
-  }
-
-  /* clearfix for fallback */
-  .image-left::after,
-  .image-right::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-}
-
-@media (min-width: 30em) {
-  .image-left img,
-  .image-right img {
-    flex-shrink: 0;
-  }
-}
-</style>
 <script>
 import { defineComponent } from "vue";
-
 import { useShopStore } from "stores/shopStore";
 import LogoutBtn from "src/components/LogoutBtn.vue";
-
 import firebase from "firebase/compat/app";
 import NewsLetter from "src/components/NewsLetter.vue";
 import SignInBtn from "src/components/SignInBtn.vue";
 import ProductsList from "src/components/ProductsList.vue";
-
+import FeaturedItems from "src/components/FeaturedItems.vue";
 export default defineComponent({
   name: "IndexPage",
   setup() {
@@ -169,7 +93,6 @@ export default defineComponent({
       store,
     };
   },
-
   data() {
     return {
       text: "",
@@ -177,7 +100,6 @@ export default defineComponent({
       email: "",
     };
   },
-
   created() {
     firebase.auth().onAuthStateChanged((auth) => {
       if (auth) {
@@ -188,7 +110,6 @@ export default defineComponent({
       }
     });
   },
-
-  components: { LogoutBtn, NewsLetter, SignInBtn, ProductsList },
+  components: { LogoutBtn, NewsLetter, SignInBtn, FeaturedItems },
 });
 </script>
