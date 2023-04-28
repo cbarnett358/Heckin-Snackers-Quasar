@@ -1,10 +1,10 @@
 <template>
-  <q-page>
+  <q-page class="q-mb-xl">
     <!--breadcrumbs-->
     <div class="q-gutter-sm bg-white">
-      <div class="q-mx-lg">
+      <div class="q-mx-sm">
         <q-item class="text-right q-gutter-sm">
-          <q-breadcrumbs class="text-info q-mt-md">
+          <q-item-section>   <q-breadcrumbs class="text-info ">
             <template v-slot:separator>
               <q-icon
                 size="1.5em"
@@ -18,11 +18,46 @@
               label="Home"
               icon="home"
             ></q-breadcrumbs-el>
-          </q-breadcrumbs>
-          <q-item-section>{{ email }} </q-item-section>
+          </q-breadcrumbs></q-item-section> 
+          <q-item-section class="text-info 
+          
+          "> {{ user }}</q-item-section>
+        
 
-          <SignInBtn></SignInBtn>
-          <LogoutBtn></LogoutBtn>
+<q-btn round color="none
+" 
+flat dense
+icon="account_circle"
+text-color="primary"
+size="md"
+
+>
+
+
+
+
+        <q-menu>
+          <q-list >
+            <q-item  clickable v-close-popup>
+              <q-item-section class="text-info" 
+              >Signed In As: <br>{{user}}</q-item-section>
+              
+            </q-item>
+          
+            <q-separator />
+    
+            <q-item clickable v-close-popup>
+              <q-item-section><LogoutBtn></LogoutBtn>
+</q-item-section>
+            </q-item>
+          
+          
+          </q-list>
+        </q-menu>
+      </q-btn>
+
+
+
         </q-item>
       </div>
     </div>
@@ -35,12 +70,14 @@
       </video>
 
       <div class="container fluid text-white q-px-lg
-      q-py-lg
+      q-py-lg product-container
       
       ">
-        <div class="product-container">
-        <h1 class="display-4 q-mb-none text-center">The Tastiest Treats That Your Pup Will Love</h1>
-        <p id="jumbotronp" class="lead text-center">
+       
+        <h1 class="display-4 q-mb-none text-center">Heckin' Natural, and Delicious Dog Food</h1>
+        <p id="jumbotronp" class="lead text-center q-mt-md 
+        
+        ">
           Heckin' Snackers provides fresh, and most importantly heckin'
           delicious snacks and food your dog will love garuanteed! Everything is
           organically sourced from the USA and will leave your pup heckin'
@@ -48,24 +85,28 @@
         </p>
         <div class="row wrap justify-center q-px-md q-gutter-lg q-pb-lg">
           <q-btn to="/shop" flat class="btn btn-primary bg-primary text-white"
-            >Shop Snackers</q-btn
+            >
+            <q-icon name="pets" size="1.5em" class="q-mr-sm"></q-icon>
+            Shop Snackers</q-btn
           >
           <q-btn to="/info" flat class="btn btn-secondary bg-info text-white"
-            >Our Purpose</q-btn
+            >
+            <q-icon name="info" size="1.5em" class="q-mr-sm"></q-icon>
+Our Purpose</q-btn
           ></div>
         </div>
       </div>
       <!-- /.container -->
-    </div>
+  
     <!--Jumbotron video End-->
-<div class="product-container q-ma-lg">
-  <h2 class="text-primary ">Featured Items</h2>
+<div class="product-container q-px-md ">
+  <h2 class="text-primary q-mb-md">Featured Products</h2>
   <FeaturedItems></FeaturedItems>
 
   <q-btn to="/shop" flat class="q-mt-lg q-mb-xl btn btn-primary bg-info text-white"
     >Shop All Products</q-btn>
+  </div>
 
-</div>
   <NewsLetter></NewsLetter>
 
 
@@ -82,8 +123,6 @@ import { useShopStore } from "stores/shopStore";
 import LogoutBtn from "src/components/LogoutBtn.vue";
 import firebase from "firebase/compat/app";
 import NewsLetter from "src/components/NewsLetter.vue";
-import SignInBtn from "src/components/SignInBtn.vue";
-import ProductsList from "src/components/ProductsList.vue";
 import FeaturedItems from "src/components/FeaturedItems.vue";
 export default defineComponent({
   name: "IndexPage",
@@ -110,6 +149,6 @@ export default defineComponent({
       }
     });
   },
-  components: { LogoutBtn, NewsLetter, SignInBtn, FeaturedItems },
+  components: { LogoutBtn, NewsLetter, FeaturedItems },
 });
 </script>

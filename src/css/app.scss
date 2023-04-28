@@ -30,16 +30,15 @@ h1 {
   font-size: 4rem;
   line-height: 3.5rem;
 
-}
-@media (max-width: 768px) {
-  h1 {
-    font-size: 4.5em;
-    line-height: 3.5rem;
 
-    //letter-spacing when on a new line
-
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+  
   }
+
 }
+
 
 h2 {
   font-size: 3rem;

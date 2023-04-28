@@ -12,6 +12,7 @@
         <q-breadcrumbs-el
           label="Checkout"
           icon="shopping_basket"
+          to="/checkout"
         ></q-breadcrumbs-el>
       </q-breadcrumbs>
     </div>
@@ -21,8 +22,12 @@
   <div class="q-mx-lg q-mb-none q-mt-sm">
     <h3 class="text-info q-mb-none q-mx-lg">CHECKOUT</h3>
     <div class="q-pa-md">
-      <q-stepper v-model="step" ref="stepper" color="primary" animated>
-        <q-step :name="1" title="Checkout" icon="info" :done="step > 1">
+      <q-stepper
+      contracted
+      class=""
+      v-model="step" ref="stepper" color="primary" animated>
+        <q-step
+         :name="1" title="Checkout" icon="info" :done="step > 1">
           <q-input
             class="q-mb-lg"
             filled

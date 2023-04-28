@@ -55,7 +55,7 @@ export default defineComponent({
         .then(() => {
           this.$q.notify({
             message: "Password reset email sent.",
-            color: "primary",
+            color: "positive",
             position: "top",
           });
           this.$router.push("/auth");

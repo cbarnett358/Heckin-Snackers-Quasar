@@ -1,9 +1,12 @@
 import { defineStore } from "pinia";
-import { ref, computed, watch } from "vue";
+
+
 //how to sort items by catergory and price in ascending order
 
 export const useShopStore = defineStore("counter", {
+  
   state: () => ({
+    
     isCartDrawerOpen: false,
 
     cart: [],
@@ -80,11 +83,16 @@ export const useShopStore = defineStore("counter", {
     getFormattedTotal(state) {
       `Total: ${centsToDollars(state.cartTotal)}`;
       return centsToDollars(state.cartTotal);
+      
     },
 
     getCartQuantity(state) {
       return state.cartQuantity;
+      //save cart quantity to local storage
+      
+      
     },
+    
 
     //display only 2 products from the array in the shop page '
     getProducts(state) {
@@ -96,9 +104,13 @@ export const useShopStore = defineStore("counter", {
     filteredProducts() {
       return this.products.filter((product) => {
         return product.name.toLowerCase().includes(this.search.toLowerCase());
+        
       });
     },
   },
+
+
+
 
   //Cart drawer
   actions: {
@@ -136,11 +148,15 @@ export const useShopStore = defineStore("counter", {
       return this.averageRating;
     },
 
-    //Checkout Cart Items and clear cart and cart total and cart quantity when the checkout is complete
+    //quasar save cart to local storage
+
+    
     checkoutCart() {
       this.cart = [];
       this.cartTotal = 0;
       this.cartQuantity = 0;
+
+      
     },
     //show two products for Featured Products component only
 
@@ -166,6 +182,8 @@ export const useShopStore = defineStore("counter", {
       });
       this.products = this.products.slice(0, 2);
     },
+
+
 
     //only show items in the array with the category of accessories
     showAccessories() {
@@ -256,27 +274,49 @@ export const useShopStore = defineStore("counter", {
       });
     },
 
-    //Cart actions (add, remove, clear, and cart total)
+    //Cart actions (add, remove, clear, and cart total) and save cart to local storage
+
     addToCart(item) {
       //save cart items in local storage
+      localStorage.setItem("cart", JSON.stringify(this.cart));
+      //save cart total in local storage
+
+
       let cartItem = this.cart.find((x) => x.id === item.id);
+
       this.isCartDrawerOpen = true;
 
       if (cartItem) {
+
         cartItem.qty++;
       } else {
         this.cart.push({ ...item, qty: 1 });
       }
       this.cartQuantity++;
-      this.cartTotal += dollarsToCents(item.cost);
+//save cart quantity in local storage
+      localStorage.setItem("cartQuantity", JSON.stringify(this.cartQuantity));
+      
 
+      this.cartTotal += dollarsToCents(item.cost);
+    
+      
     },
+
+
 
 
   
 
     //Remove item from cart
     removeFromCart(item) {
+
+      //save cart items in local storage
+      localStorage.setItem("cart", JSON.stringify(this.cart));
+      //don't allow negative numbers
+      if (this.cartQuantity === 0) {
+        return;
+      }
+
       let cartItem = this.cart.find((x) => x.id === item.id);
 
       if (cartItem.qty > 1) {
@@ -288,10 +328,12 @@ export const useShopStore = defineStore("counter", {
         this.cartQuantity--;
         this.cartTotal -= dollarsToCents(item.cost);
       }
+      
     },
 
     //Clears all items from cart
     clearCart() {
+      //save cart items in local storage
       this.cart = [];
       this.cartQuantity = 0;
       this.cartTotal = 0;
@@ -301,7 +343,7 @@ export const useShopStore = defineStore("counter", {
     updateCart() {
       this.cartQuantity = this.cart.length;
       this.cartTotal = this.cart.reduce(
-        (qty, item) => total + dollarsToCents(item.cost),
+        (item) => total + dollarsToCents(item.cost),
         0
       );
     },
@@ -310,6 +352,9 @@ export const useShopStore = defineStore("counter", {
   },
 });
 
+
+
+    
 var dollarsToCents = function (amount) {
   if (typeof amount !== "string" && typeof amount !== "number") {
     throw new Error("Amount passed must be of type String or Number.");
@@ -327,5 +372,6 @@ var centsToDollars = function (amount) {
   return (amount / 100).toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
+    
   });
 };

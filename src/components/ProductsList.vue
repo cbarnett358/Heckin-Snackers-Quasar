@@ -2,7 +2,6 @@
 
 
 
-//display product cards in a grid layout that fills container and dont duplicate the same product
 
 
 
@@ -25,6 +24,7 @@
       
     </div>
   </q-card-section>
+  
 
   <q-card-actions>
     <q-btn

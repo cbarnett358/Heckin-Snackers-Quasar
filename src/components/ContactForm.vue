@@ -74,7 +74,7 @@ export default defineComponent({
             //send success message
             this.$q.notify({
               message: "Email sent successfully",
-              color: "positive",
+              color: "green",
               position: "top",
               timeout: 3000,
             });

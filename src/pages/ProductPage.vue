@@ -1,11 +1,12 @@
 <!--Page with product details(individual items)-->
 <template>
   <q-page>
+    
     <!--breadcrumbs-->
     <div class="q-gutter-sm bg-white">
-      <div class="q-mx-lg">
+      <div class="q-mx-sm">
         <q-item class="text-right q-gutter-sm">
-          <q-breadcrumbs class="text-info q-mt-md">
+          <q-item-section>      <q-breadcrumbs class="text-info">
             <template v-slot:separator>
               <q-icon
                 size="1em"
@@ -28,17 +29,50 @@
             <q-breadcrumbs-el to="/products/:id" icon="pets"
               >&nbsp;&nbsp;{{ item.name }}</q-breadcrumbs-el
             >
-          </q-breadcrumbs>
-        
-         
-          <q-item-section>{{ email }} </q-item-section>
-
-<SignInBtn></SignInBtn>
-<LogoutBtn></LogoutBtn>
+          </q-breadcrumbs></q-item-section> 
+          <q-item-section class="text-info 
           
+          "> {{ user }}</q-item-section>
+        
+
+<q-btn round color="none
+" 
+flat dense
+icon="account_circle"
+text-color="primary"
+size="md"
+
+>
+
+
+
+
+        <q-menu>
+          <q-list >
+            <q-item  clickable v-close-popup>
+              <q-item-section class="text-info" 
+              >Signed In As: <br>{{user}}</q-item-section>
+              
+            </q-item>
+          
+            <q-separator />
+    
+            <q-item clickable v-close-popup>
+              <q-item-section><LogoutBtn></LogoutBtn>
+</q-item-section>
+            </q-item>
+          
+          
+          </q-list>
+        </q-menu>
+      </q-btn>
+
+
+
         </q-item>
       </div>
     </div>
+    
     
     <!--breadcrumbs End-->
     <div class="container q-ma-xl">
@@ -59,7 +93,7 @@
         </div>
 
       <div class="col-12 col-md-6 q-pa-lg ">
-        <h3 class="q-mb-none q-mt-sm text-primary">{{ item.name }}</h3>
+        <h4 class="q-mb-none q-mt-sm text-primary">{{ item.name }}</h4>
             <p class="q-my-sm">{{ item.description }}</p>
             <q-btn
               flat
@@ -120,7 +154,6 @@ import { useShopStore } from "stores/shopStore";
 import { useRoute } from "vue-router";
 import firebase from "firebase/compat/app";
 import LogoutBtn from "components/LogoutBtn.vue";
-import SignInBtn from "src/components/SignInBtn.vue";
 import RateProduct from "src/components/RateProduct.vue";
 
 export default defineComponent({
@@ -160,7 +193,6 @@ export default defineComponent({
   components: {
     RateProduct,
     LogoutBtn,
-    SignInBtn,
 },
 });
 </script>

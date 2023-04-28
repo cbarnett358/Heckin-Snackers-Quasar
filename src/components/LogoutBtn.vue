@@ -1,9 +1,24 @@
 <template>
+   
   <q-btn
     flat
     label="Sign Out"
+    v-if="isUserLoggedIn"
+
+
     @click="logout"
-    class="btn btn-primary text-info"
+    class="btn btn-primary bg-info text-white"
+  ></q-btn>
+  <q-btn
+    to="/auth"
+    flat
+
+    label="Sign In"
+    v-if="!isUserLoggedIn"
+   
+
+    
+    class="btn btn-primary  bg-primary text-white"
   ></q-btn>
 </template>
 
@@ -27,9 +42,22 @@ export default defineComponent({
 
 
   methods: {
+
+    signIn () {
+
+
+
+    },
+
+    
+
+    
+
+
       
 
     logout() {
+
 
 
       firebase.auth().signOut();
@@ -63,11 +91,24 @@ export default defineComponent({
     },
     
   },
+//this is requiring a refresh to show fix this
+
+  computed: {
+    isUserLoggedIn() {
+      return this.store.user !== null;
+      
+    },
+  },  
+
+  
+
+
   data() {
       
     return {
       user: "",
       email: "",
+      
     };
   },
 });

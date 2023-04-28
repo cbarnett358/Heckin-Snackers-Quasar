@@ -81,8 +81,19 @@ import { useShopStore } from "stores/shopStore";
 import { defineComponent, ref } from "vue";
 import { createOrder } from "../boot/firebase";
 
+
 export default defineComponent({
   name: "CartDrawer",
+ 
+
+
+
+
+  
+
+
+
+
 
   setup() {
     const isCreatingOrder = ref(false);
@@ -91,8 +102,16 @@ export default defineComponent({
     return {
       store,
       isCreatingOrder,
+
+      
+
     };
   },
+
+
+
+//if not logged in and click checkout q.notify "please login to checkout" 
+
 
   methods: {
     async processCheckout() {
@@ -100,21 +119,11 @@ export default defineComponent({
       await createOrder();
       this.isCreatingOrder = false;      
 
-
-
-      this.$router.push("/checkout");
-       
-
-
-
-        
-
-
-
-
-
+      this.$router.push("/checkout")
         
     },
+
+    
   },
 });
 

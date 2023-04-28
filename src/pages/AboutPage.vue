@@ -3,9 +3,9 @@
   <q-page>
     <!--breadcrumbs-->
     <div class="q-gutter-sm bg-white">
-      <div class="q-mx-lg">
+      <div class="q-mx-sm">
         <q-item class="text-right q-gutter-sm">
-          <q-breadcrumbs class="text-info q-mt-md">
+          <q-item-section>   <q-breadcrumbs class="text-info ">
             <template v-slot:separator>
               <q-icon
                 size="1.5em"
@@ -20,29 +20,66 @@
               icon="home"
             ></q-breadcrumbs-el>
             <q-breadcrumbs-el
-              to="/about"
+              to="/info"
               label="About"
               icon="info"
             ></q-breadcrumbs-el>
-          </q-breadcrumbs>
-          <q-item-section> {{ email }}</q-item-section>
-          <SignInBtn></SignInBtn>
-          <LogoutBtn></LogoutBtn>
+          </q-breadcrumbs></q-item-section> 
+          <q-item-section class="text-info 
+          
+          "> {{ user }}</q-item-section>
+        
+
+<q-btn round color="none
+" 
+flat dense
+icon="account_circle"
+text-color="primary"
+size="md"
+
+>
+
+
+
+
+        <q-menu>
+          <q-list >
+            <q-item  clickable v-close-popup>
+              <q-item-section class="text-info" 
+              >Signed In As: <br>{{user}}</q-item-section>
+              
+            </q-item>
+          
+            <q-separator />
+    
+            <q-item clickable v-close-popup>
+              <q-item-section><LogoutBtn></LogoutBtn>
+</q-item-section>
+            </q-item>
+          
+          
+          </q-list>
+        </q-menu>
+      </q-btn>
+
+
+
         </q-item>
       </div>
     </div>
+   
     <!--breadcrumbs End-->
     <div class="jumbotron jumbotron-con">
       <video autoplay muted loop poster="">
         <source src="../assets/dogfield.mp4" type="video/mp4" />
       </video>
 
-      <div class="container text-white q-px-lg">
+      <div class="container text-white q-px-lg  q-py-lg product-container">
         <div class="col-1"></div>
 
-        <div class="col-6"></div>
+        <div class="col-6  "></div>
         <h1 class="display-4 q-mb-none text-center">Heckin' About Us</h1>
-        <p id="jumbotronp" class="lead text-center">
+        <p id="jumbotronp" class="lead text-center q-mt-md">
           Heckin' Snackers provides fresh, and most importantly heckin'
           delicious snacks and food your dog will love garuanteed! Everything is
           organically sourced from the USA and will leave your pup heckin'
@@ -52,18 +89,17 @@
       <!-- /.container -->
     </div>
     <div class="product-container q-ma-lg">
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-8 q-mx-lg">
-        <div>
-          <h3 class="text-info q-mb-none">About Us</h3>
-
-          <div class="image-right">
+      <div class="row q-mb-xl  q-px-md ">
+          <div class="col-12 col-md-4 q-mt-xl">
             <img
-              src="../../public/images/sammystanding.jpeg"
-              width="500"
+              src="../../public/images/winston.png"
+              width="225"
               alt="Human Rights Logo"
             />
+          </div>
+          <div class="col-12 col-md-8">
+            <h3 class="text-info q-mb-md">About Us</h3>
+
             <div>
               <p class="q-mt-none">
                 Heckin' Snackers prides itself in supplying your pups both big
@@ -86,12 +122,28 @@
                 your money back!
               </p>
             </div>
+            <q-btn
+              id="my-button"
+              class="q-mt-lg q-mr-md"
+              color="primary"
+              square
+              label="SHOP OUR PRODUCTS"
+              icon="pets"
+              to="/shop"
+            />
+            <q-btn
+              class="q-mt-lg q-mr-md"
+              color="info"
+              square
+              id="secondary-button"
+              text-color="white"
+              label="CONTACT US"
+              icon="mail"
+              to="/contact"
+            />
           </div>
         </div>
-      </div>
-      <div class="col"></div>
-    </div>
-
+   
 </div>
   
   </q-page>
@@ -156,8 +208,6 @@ import { defineComponent } from "vue";
 import firebase from "firebase/compat/app";
 import { useShopStore } from "stores/shopStore";
 import LogoutBtn from "components/LogoutBtn.vue";
-import ProductsList from "src/components/ProductsList.vue";
-import SignInBtn from "src/components/SignInBtn.vue";
 
 export default defineComponent({
   name: "AboutPage",
@@ -187,7 +237,7 @@ export default defineComponent({
   },
   components: {
     LogoutBtn,
-    SignInBtn,
+    
   },
 });
 </script>

@@ -19,16 +19,10 @@
             type="textarea"
           />
         </q-form>
-        //hide search until user starts typing
-
         <div v-for="item in filteredProducts" :key="item.id">
-          <q-item clickable :to="'/products/' + item.id">
+          <q-item clickable :to="'products/' + item.id">
             <q-item-section>
-              <q-item-label 
-                v-if="search.length > 0"
-
-              
-              class="text-info q-my-sm text-h5">{{
+              <q-item-label class="text-info q-my-sm text-h5">{{
                 item.name
               }}</q-item-label>
             </q-item-section>
@@ -43,10 +37,8 @@
 import { defineComponent } from "vue";
 import { ref, computed } from "vue";
 import { useShopStore } from "stores/shopStore";
-
 export default defineComponent({
   name: "SearchBar",
-
   setup() {
     const dialog = ref(false);
     const position = ref("top");
@@ -63,20 +55,13 @@ export default defineComponent({
       filteredProducts,
       dialog,
       position,
-
       open(pos) {
         position.value = pos;
         dialog.value = true;
       },
     };
   },
-  data() {
-    return {
-      user: "",
-      email: "",
-    };
-  },
-  
+ 
   methods: {
     searchProduct() {
       this.$router.push({ name: "Product", params: { id: item.id } });
